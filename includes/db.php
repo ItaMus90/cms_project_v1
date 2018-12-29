@@ -17,6 +17,6 @@
 
     if($connection){
 
-        echo "Ok";
+       
 
     }
