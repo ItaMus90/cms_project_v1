@@ -25,11 +25,15 @@
 
                             $cat_title = $row["category_title"];
 
-                            echo "<li> <a href='#'>" . $cat_title . "</a></li>";
+                            echo "<li> <a href='#'>" . strtoupper($cat_title) . "</a></li>";
 
                         }
                     
                     ?>
+
+                    <li>
+                        <a href="admin">ADMIN</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
