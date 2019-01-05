@@ -1,9 +1,9 @@
-<?php include_once("includes/header.php"); ?>
+<?php include_once("includes/admin_header.php"); ?>
 
     <div id="wrapper">
 
         <!-- Navigation -->
-        <?php include_once("includes/navigation.php"); ?>
+        <?php include_once("includes/admin_navigation.php"); ?>
 
 
 
@@ -40,6 +40,15 @@
                         </div><!--col-xs-6-->
 
                         <div class="col-xs-6">
+
+                        <?php 
+                        
+                            $query = "SELECT * FROM categories";
+                            $query_select_all = mysqli_query($connection, $query);
+                        
+                        
+                        ?>
+
                         
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -49,10 +58,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Soccer Category</td>
-                                        <td>Baskball Category</td>
-                                    </tr>
+
+                                    <?php 
+                                    
+                                        while($row = mysqli_fetch_assoc($query_select_all)){
+
+                                            $cate_id = $row["idcategory"];
+                                            $cate_title = $row["category_title"];
+
+
+                                            echo "<tr>";
+                                            echo "<td>" .$cate_id ."</td>";
+                                            echo "<td>" .$cate_title ."</td>";
+                                            echo "</tr>";
+
+                                        }
+                                    
+                                    
+                                    ?>
+
                                 </tbody>
                             </table>
                         
@@ -80,4 +104,4 @@
 
 
 
-    <?php include_once("includes/footer.php"); ?>
+    <?php include_once("includes/admin_footer.php"); ?>
