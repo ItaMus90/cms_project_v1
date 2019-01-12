@@ -76,14 +76,6 @@
 
                         <div class="col-xs-6">
 
-                        <?php 
-                        
-                            $query = "SELECT * FROM categories";
-                            $query_select_all = mysqli_query($connection, $query);
-                        
-                        
-                        ?>
-
                         
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -95,6 +87,9 @@
                                 <tbody>
 
                                     <?php 
+                                        //Find all categories
+                                        $query = "SELECT * FROM categories";
+                                        $query_select_all = mysqli_query($connection, $query);
                                     
                                         while($row = mysqli_fetch_assoc($query_select_all)){
 
@@ -105,8 +100,27 @@
                                             echo "<tr>";
                                             echo "<td>" .$cate_id ."</td>";
                                             echo "<td>" .$cate_title ."</td>";
+                                            echo "<td><a href=categories.php?delete=" .$cate_id . ">Delete</a></td>";
                                             echo "</tr>";
 
+                                        }
+                                    
+                                    
+                                    ?>
+
+
+                                    <?php 
+
+                                        //Delete Query
+                                    
+                                        if (isset($_GET["delete"])) {
+
+                                            $id_category = $_GET["delete"];
+
+                                            $query = "DELETE FROM cms_v1.categories WHERE idcategory = '". $id_category ."' ";
+                                            $query_delete = mysqli_query($connection, $query);
+
+                                            header("Location: categories.php");
                                         }
                                     
                                     
