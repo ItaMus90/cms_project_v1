@@ -23,8 +23,43 @@
 
 
                         <div class="col-xs-6">
+
+
+
+                            <?php 
+                            
+                                if (isset($_POST["submit_category"])) {
+
+                                    $cat_title = $_POST["cat_title"];
+
+                                    if ($cat_title === "" || empty($cat_title)) {
+
+                                        echo "This field should not be empty";
+
+                                    } else {
+
+                                        $idcategory = md5( $cat_title . "2683b0748eb7782c3065038a53d58182" . time());
+
+                                        $query = "INSERT INTO cms_v1.categories (idcategory, category_title) ";
+                                        $query .= "VALUES ('". $idcategory . "' , '" .$cat_title . "') ";
+
+
+                                        $create_category_query = mysqli_query($connection, $query);
+
+                                        if (!$create_category_query) {
+
+                                            die("QUERY FAILED " .mysqli_error($connection));
+
+                                        }
+                                    }
+
+                                }
+                            
+                            
+                            ?>
+
                         
-                            <form action="">
+                            <form action="" method="post">
 
                                 <div class="form-group">
                                 <label for="cat-title">Add Category</label>
@@ -32,7 +67,7 @@
                                 </div><!--form-group-->
                                 
                                 <div class="form-group">
-                                    <input type="submit" value="Add Category" name="submit" class="btn btn-info">
+                                    <input type="submit" value="Add Category" name="submit_category" class="btn btn-info">
                                 </div><!--form-group-->
 
                             </form>
